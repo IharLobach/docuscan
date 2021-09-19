@@ -23,3 +23,8 @@ The `docuscan.sh` shell script will process all files in `input/` folder and sav
 When `docuscan.sh` is run, it deletes whatever was left in `output/` from the previous run.
 
 ![demo](demo.png)
+
+
+# References
+* https://bretahajek.com/2017/01/scanning-documents-photos-opencv/
+* https://www.pyimagesearch.com/2014/09/01/build-kick-ass-mobile-document-scanner-just-5-minutes/
