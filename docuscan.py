@@ -95,15 +95,14 @@ res = cv2.rotate(res, cv2.ROTATE_90_CLOCKWISE)
 if conf['use_threshold']:
     # giving black-and-white feel
     res = cv2.cvtColor(res, cv2.COLOR_BGR2GRAY)
-    T = threshold_local(res, conf['threshold_block_size'],
-                        offset=conf['threshold_offset'],
-                        method="gaussian")
-    res = (res > T).astype("uint8")
-
-    # setting specified margin (line of certain thickness) to white pixels
     imax, jmax = res.shape
-    margin = 0.01
-    mar = int(imax * margin)
+    T = threshold_local(res,
+        int(2*(imax*conf['threshold_block_size'] // 2) + 1),
+        offset=conf['threshold_offset'],
+        method="gaussian")
+    res = (res > T).astype("uint8")
+    # setting specified margin (line of certain thickness) to white pixels
+    mar = int(imax * conf['margin'])
     mar_fi = np.ones(shape=res.shape)
     mar_fi[mar:-mar, mar:-mar] = 0
     res = ((mar_fi + res) > 0).astype("uint8") * 255
