@@ -22,3 +22,4 @@ The 4 edges must be in the 4 corresponding quadrants of the image. The backgroun
 The `docuscan.sh` shell script will process all files in `input/` folder and save the results in `output/` folder as image files (please create these two folders manually). On a Mac, it will also open the results in `Preview`, where you can rearrange them and then save the merged file as a pdf (print -> save as pdf).
 When `docuscan.sh` is run, it deletes whatever was left in `output/` from the previous run.
 
+![demo](demo.png)

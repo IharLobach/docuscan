@@ -116,10 +116,18 @@ cv2.imwrite(outputfile, res)
 
 # showing the contour in matplotlib
 if conf['show_contour']:
-    fig, ax = plt.subplots()
-    plt.imshow(ctr0_im)
+    fig, axs = plt.subplots(1, 2)
+    ax, ax1 = axs
+    ax.imshow(ctr0_im)
     for x, y in xys0:
         circle1 = plt.Circle((x, y), a/scale, color='red', fill=False)
         ax.add_patch(circle1)
-    plt.axis('off')
+    ax.get_xaxis().set_ticks([])
+    ax.get_yaxis().set_ticks([])
+    ax.set_title("input")
+    cmap = 'gray' if conf['use_threshold'] else None
+    ax1.imshow(res, cmap=cmap)
+    ax1.get_xaxis().set_ticks([])
+    ax1.get_yaxis().set_ticks([])
+    ax1.set_title('output')
     plt.show()
