@@ -1,3 +1,4 @@
+# how to use: python docuscan.py inputfile.jpg outputfile.jpg
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
@@ -8,15 +9,16 @@ from skimage.filters import threshold_local
 with open("config.json") as f:
     conf = json.load(f)
 
-if len(sys.argv) != 2:
-    raise ValueError("There should be one argument --- file name of the image!")
+if len(sys.argv) != 3:
+    raise ValueError("How to use: python docuscan.py inputfile.jpg outputfile.jpg")
 
-filename = sys.argv[1]
-print(filename)
 
-image = cv2.imread(filename)
+inputfile = sys.argv[1]
+outputfile = sys.argv[2]
+
+image = cv2.imread(inputfile)
 if image.shape[0] < image.shape[1]:
-    image = cv2.rotate(image, cv2.cv2.ROTATE_90_COUNTERCLOCKWISE)
+    image = cv2.rotate(image, cv2.ROTATE_90_COUNTERCLOCKWISE)
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 # reducing image size and shifting intensity by -127.5
@@ -87,7 +89,7 @@ M = cv2.getPerspectiveTransform(xys_fl, rect)
 
 res = cv2.warpPerspective(image, M, (int(height), int(width)))
 res = cv2.flip(res, 0)
-res = cv2.rotate(res, cv2.cv2.ROTATE_90_CLOCKWISE)
+res = cv2.rotate(res, cv2.ROTATE_90_CLOCKWISE)
 
 
 if conf['use_threshold']:
@@ -109,10 +111,7 @@ if conf['use_threshold']:
 
 
 # writing result to file
-base_name, ext = filename.split(".")
-res_name = base_name + "_cropped." + ext
-
-cv2.imwrite(res_name, res)
+cv2.imwrite(outputfile, res)
 
 
 # showing the contour in matplotlib
