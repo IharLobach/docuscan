@@ -1,5 +1,9 @@
 {
     "resolution_reduction": 0.1,
     "bubble_size": 0.03,
-    "show_contour": true
+    "show_contour": true,
+    "use_threshold": true,
+    "threshold_block_size": 11,
+    "threshold_offset": 10,
+    "margin": 0.01
 }
