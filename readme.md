@@ -1,6 +1,6 @@
 # Crop documents from photos
 
-Design to work with US Letter paper size only (at least, for now).
+Designed to work with US Letter paper size only (at least, for now).
 
 Create an environment `env/` inside the repo directory using conda and the file `environment.yml`
 
